@@ -1,122 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Kumar Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harsh Kumar Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo"> <i class="fa-solid fa-laptop-code"></i> Harsh Kumar Portfolio</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="home" class="section hero">
-            <div class="hero-content">
-                <img src="image.jpg" alt="Avatar" class="avatar">
-                <div>
-                    <h1>Hello, I'm <span class="highlight">Harsh Kumar</span></h1>
-                    <h2>AI-Driven Web Developer</h2>
-                    <p>Building intelligent, beautiful web experiences with the power of AI and modern design.</p>
-                    <button id="ai-assistant-btn" class="ai-btn"><i class="fa-solid fa-comments"></i> Ask AI Assistant</button>
-                </div>
-            </div>
-        </section>
-        <section id="about" class="section glass">
-            <h2>About Me</h2>
-            <p>I'm a passionate developer specializing in AI-powered web solutions. I love blending creativity, code, and intelligence to deliver next-gen user experiences.</p>
-        </section>
-        <section id="skills" class="section">
-            <h2>Skills</h2>
-            <div class="skills-list">
-                <div class="skill">
-                    <span>HTML</span>
-                    <div class="skill-bar-bg"><div class="skill-bar" data-value="95"></div></div>
-                </div>
-                <div class="skill">
-                    <span>CSS</span>
-                    <div class="skill-bar-bg"><div class="skill-bar" data-value="90"></div></div>
-                </div>
-                <div class="skill">
-                    <span>JavaScript</span>
-                    <div class="skill-bar-bg"><div class="skill-bar" data-value="92"></div></div>
-                </div>
-                <div class="skill">
-                    <span>AI Integration</span>
-                    <div class="skill-bar-bg"><div class="skill-bar" data-value="85"></div></div>
-                </div>
-                <div class="skill">
-                    <span>UI/UX Design</span>
-                    <div class="skill-bar-bg"><div class="skill-bar" data-value="88"></div></div>
-                </div>
-            </div>
-        </section>
-        <section id="projects" class="section glass">
-            <h2>Projects</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <h3>AI Chatbot</h3>
-                    <p>Conversational AI assistant for websites, built with JavaScript and OpenAI API.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Smart Portfolio</h3>
-                    <p>Personal portfolio with AI-powered recommendations and analytics.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Modern UI Kit</h3>
-                    <p>Reusable, beautiful UI components for fast web development.</p>
-                </div>
-            </div>
-        </section>
-        <section id="contact" class="section glass">
-            <h2>Contact</h2>
-            <form class="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name"><i class="fa-solid fa-user"></i> Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message"><i class="fa-solid fa-comment-dots"></i> Message</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="ai-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Harsh Kumar Made with <i class="fa-solid fa-brain"></i> & AI.</p>
-    </footer>
-    <!-- AI Assistant Widget (UI only) -->
-    <div id="ai-assistant-widget" class="ai-widget">
-        <div class="ai-header">
-            <span><i class="fa-solid fa-robot"></i> AI Assistant</span>
-            <button id="ai-assistant-close"><i class="fa-solid fa-xmark"></i></button>
+  <header>
+    <nav>
+      <div class="logo"><i class="fa-solid fa-laptop-code"></i> Harsh Kumar Portfolio</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section hero">
+      <div class="hero-content">
+        <img src="image.jpg" alt="Avatar" class="avatar" />
+        <div>
+          <h1>Hello, I'm <span class="highlight">Harsh Kumar</span></h1>
+          <h2>AI-Driven Web Developer</h2>
+          <p>Building intelligent, beautiful web experiences with the power of AI and modern design.</p>
+          <button id="ai-assistant-btn" class="ai-btn">
+            <i class="fa-solid fa-comments"></i> Ask AI Assistant
+          </button>
         </div>
-        <div class="ai-messages">
-            <div class="ai-message ai">Hi! I'm your AI assistant. How can I help you?</div>
+      </div>
+    </section>
+
+    <section id="about" class="section glass">
+      <h2>About Me</h2>
+      <p>I'm a passionate developer specializing in AI-powered web solutions. I love blending creativity, code, and intelligence to deliver next-gen user experiences.</p>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        <div class="skill"><span>HTML</span><div class="skill-bar-bg"><div class="skill-bar" data-value="95"></div></div></div>
+        <div class="skill"><span>CSS</span><div class="skill-bar-bg"><div class="skill-bar" data-value="90"></div></div></div>
+        <div class="skill"><span>JavaScript</span><div class="skill-bar-bg"><div class="skill-bar" data-value="92"></div></div></div>
+        <div class="skill"><span>AI Integration</span><div class="skill-bar-bg"><div class="skill-bar" data-value="85"></div></div></div>
+        <div class="skill"><span>UI/UX Design</span><div class="skill-bar-bg"><div class="skill-bar" data-value="88"></div></div></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section glass">
+      <h2>Projects</h2>
+      <div class="projects-container">
+        <div class="project-card"><h3>AI Chatbot</h3><p>Conversational AI assistant for websites, built with JavaScript and OpenAI API.</p></div>
+        <div class="project-card"><h3>Smart Portfolio</h3><p>Personal portfolio with AI-powered recommendations and analytics.</p></div>
+        <div class="project-card"><h3>Modern UI Kit</h3><p>Reusable, beautiful UI components for fast web development.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section glass">
+      <h2>Contact</h2>
+      <form class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name"><i class="fa-solid fa-user"></i> Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
         </div>
-        <div class="ai-input-row">
-            <input type="text" placeholder="Type your question..." disabled>
-            <button disabled><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="form-group">
+          <label for="message"><i class="fa-solid fa-comment-dots"></i> Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
         </div>
+        <button type="submit" class="ai-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Harsh Kumar. Made with <i class="fa-solid fa-brain"></i> & AI.</p>
+  </footer>
+
+  <!-- AI Assistant Widget -->
+  <div id="ai-assistant-widget" class="ai-widget">
+    <div class="ai-header">
+      <span><i class="fa-solid fa-robot"></i> AI Assistant</span>
+      <button id="ai-assistant-close"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <script src="scripts.js"></script>
+    <div class="ai-messages">
+      <div class="ai-message ai">Hi! I'm your AI assistant. How can I help you?</div>
+    </div>
+    <div class="ai-input-row">
+      <input type="text" placeholder="Type your question..." />
+      <button><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
