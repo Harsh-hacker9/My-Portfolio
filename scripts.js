@@ -1,122 +1,175 @@
-// Smooth scrolling for navigation links
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href').slice(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-            e.preventDefault();
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== Skill Bars Animation on Scroll =====
+  const skillsSection = document.getElementById("skills");
+  const skillBars = document.querySelectorAll(".skill-bar");
+
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+
+  function animateSkills() {
+    if (isInViewport(skillsSection)) {
+      skillBars.forEach(bar => {
+        const value = bar.getAttribute("data-value");
+        bar.style.width = value + "%";
+      });
+      window.removeEventListener("scroll", animateSkills);
+    }
+  }
+
+  window.addEventListener("scroll", animateSkills);
+  animateSkills();
+
+  // ===== AI Assistant Widget Toggle =====
+  const aiBtn = document.getElementById("ai-assistant-btn");
+  const aiWidget = document.getElementById("ai-assistant-widget");
+  const aiCloseBtn = document.getElementById("ai-assistant-close");
+  const aiMessages = aiWidget.querySelector(".ai-messages");
+  const aiInput = aiWidget.querySelector("input");
+  const aiSendBtn = aiWidget.querySelector("button");
+
+  aiBtn.addEventListener("click", () => {
+    aiWidget.classList.add("open");
+    aiInput.disabled = false;
+    aiSendBtn.disabled = false;
+    aiInput.focus();
+  });
+
+  aiCloseBtn.addEventListener("click", closeAIWidget);
+
+  function closeAIWidget() {
+    aiWidget.classList.remove("open");
+    aiInput.value = "";
+    aiInput.disabled = true;
+    aiSendBtn.disabled = true;
+    aiMessages.innerHTML = "";
+  }
+
+  // ===== Close AI Assistant when clicking outside =====
+  document.addEventListener("click", (e) => {
+    const isClickInsideWidget = aiWidget.contains(e.target);
+    const isClickOnButton = aiBtn.contains(e.target);
+    if (!isClickInsideWidget && !isClickOnButton && aiWidget.classList.contains("open")) {
+      closeAIWidget();
+    }
+  });
+
+  // ===== AI Assistant Logic (Frontend-Only, Custom Replies) =====
+  function getMockReply(message) {
+    const lower = message.toLowerCase();
+
+    // Personalized replies
+    if (lower.includes("who are you") || lower.includes("your name")) {
+      return "I'm Harsh Kumar's personal AI assistant. How can I help?";
+    }
+if(lower.includes("hi")||
+lower.includes("hello")||
+lower.includes("hi,Harsh")||
+lower.includes("hello,Harsh")){
+    return "Hello! How can I help you today?";
+}
+    if (
+      lower.includes("harsh") ||
+      lower.includes("about you") ||
+      lower.includes("tell me about yourself")
+    ) {
+      return "Harsh Kumar is an AI-driven web developer passionate about building intelligent, beautiful web experiences.";
+    }
+
+    if (
+      lower.includes("what do you do") ||
+      lower.includes("what can you do") ||
+      lower.includes("your work")
+    ) {
+      return "Harsh creates smart, user-friendly websites with modern tech and AI integration.";
+    }
+
+    if (
+      lower.includes("skills") ||
+      lower.includes("what are your skills")
+    ) {
+      return "Harsh is skilled in HTML, CSS, JavaScript, AI integration, and UI/UX design.";
+    }
+
+    if (
+      lower.includes("projects") ||
+      lower.includes("what are your projects")
+    ) {
+      return "Harsh has built an AI chatbot, a smart portfolio, and a reusable UI kit for developers.";
+    }
+
+    if (
+      lower.includes("contact") ||
+      lower.includes("how can i contact") ||
+      lower.includes("give me contact")
+    ) {
+      return "You can reach Harsh Kumar through the contact form at the bottom of this page.";
+    }
+
+    if (
+      lower.includes("resume") ||
+      lower.includes("cv")
+    ) {
+      return "Harsh's resume is available on request. Please leave your email in the contact form.";
+    }
+
+    // Fallback replies
+    const fallbackReplies = [
+      "That's interesting! Tell me more.",
+      "I'm just a frontend demo, but I'm happy to chat!",
+      "Cool! Anything else you'd like to ask?",
+      "Frontend magic makes me run!",
+      "Ask me about Harsh Kumar’s skills or projects!"
+    ];
+
+    return fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)];
+  }
+
+  async function sendMessage() {
+    const message = aiInput.value.trim();
+    if (!message) return;
+
+    appendMessage("user", message);
+    aiInput.value = "";
+    aiInput.disabled = true;
+    aiSendBtn.disabled = true;
+
+    setTimeout(() => {
+      const aiReply = getMockReply(message);
+      appendMessage("ai", aiReply);
+      aiInput.disabled = false;
+      aiSendBtn.disabled = false;
+      aiInput.focus();
+    }, 1000);
+  }
+
+  function appendMessage(sender, text) {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("ai-message", sender === "ai" ? "ai" : "user");
+    msgDiv.textContent = text;
+    aiMessages.appendChild(msgDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  aiSendBtn.addEventListener("click", sendMessage);
+  aiInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // ===== Contact Form =====
+  const contactForm = document.querySelector(".contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you for your message! Harsh will get back to you soon.");
+      contactForm.reset();
     });
+  }
 });
-
-// Animated skill bars
-function animateSkillBars() {
-    document.querySelectorAll('.skill-bar').forEach(bar => {
-        const value = bar.getAttribute('data-value');
-        bar.style.width = value + '%';
-    });
-}
-
-window.addEventListener('scroll', () => {
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection && skillsSection.getBoundingClientRect().top < window.innerHeight - 100) {
-        animateSkillBars();
-    }
-});
-
-// Dark/Light mode toggle
-const modeToggle = document.getElementById('mode-toggle');
-if (modeToggle) {
-    modeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        modeToggle.classList.toggle('active');
-    });
-}
-
-// AI Assistant Chat Widget (UI only)
-const aiBtn = document.getElementById('ai-assistant-btn');
-const aiWidget = document.getElementById('ai-assistant-widget');
-const aiClose = document.getElementById('ai-assistant-close');
-
-if (aiBtn && aiWidget && aiClose) {
-    aiBtn.addEventListener('click', () => {
-        aiWidget.classList.add('open');
-    });
-    aiClose.addEventListener('click', () => {
-        aiWidget.classList.remove('open');
-    });
-}
-
-// Hide AI assistant widget when clicking outside
-if (aiWidget) {
-    document.addEventListener('mousedown', function(event) {
-        if (aiWidget.classList.contains('open') && !aiWidget.contains(event.target) && event.target !== aiBtn) {
-            aiWidget.classList.remove('open');
-        }
-    });
-}
-
-// Local AI Assistant Chat (no API)
-const aiInput = document.querySelector('.ai-input-row input');
-const aiSend = document.querySelector('.ai-input-row button');
-const aiMessages = document.querySelector('.ai-messages');
-
-if (aiInput && aiSend && aiMessages) {
-    function sendMessage() {
-        const msg = aiInput.value.trim();
-        if (msg) {
-            // Show user's message
-            const userMsg = document.createElement('div');
-            userMsg.className = 'ai-message user';
-            userMsg.textContent = msg;
-            aiMessages.appendChild(userMsg);
-            aiInput.value = '';
-            aiMessages.scrollTop = aiMessages.scrollHeight;
-
-            // Simulate AI reply
-            const aiReply = document.createElement('div');
-            aiReply.className = 'ai-message ai';
-            aiReply.innerHTML = getAIReply(msg);
-            aiMessages.appendChild(aiReply);
-            aiMessages.scrollTop = aiMessages.scrollHeight;
-        }
-    }
-
-    function getAIReply(userMsg) {
-        const lower = userMsg.toLowerCase();
-
-        if (lower.includes('name') || lower.includes('who are you')) {
-            return "Greetings, human! 🤖 My name is Harsh Kumar, your friendly AI-powered portfolio assistant. How can I help you today?";
-        } else if (lower.includes('skills')) {
-            return "Harsh Kumar excels at HTML, CSS, JavaScript, AI Integration, and UI/UX Design. Want to dive deeper into any of these?";
-        } else if (lower.includes('project')) {
-            return `Here are some of Harsh Kumar's top projects:
-                <ul style='margin:0 0 0 18px;'>
-                    <li><b>AI Chatbot:</b> A conversational AI assistant for websites.</li>
-                    <li><b>Smart Portfolio:</b> AI-powered recommendations and analytics.</li>
-                    <li><b>Modern UI Kit:</b> Reusable components for modern interfaces.</li>
-                </ul>`;
-        } else if (lower.includes('contact') || lower.includes('email')) {
-            return "You can contact Harsh Kumar using the form below or send an email to <b>your@email.com</b>. I'm always here to help!";
-        } else if (lower.includes('about')) {
-            return "I'm here to guide you through Harsh Kumar's portfolio. He’s passionate about blending creativity, code, and intelligence!";
-        } else if (lower.includes('hello') || lower.includes('hi')) {
-            return "Hello! 👋 I'm your AI guide. Ask me anything about Harsh Kumar's work, skills, or projects.";
-        } else if (lower.includes('ai')) {
-            return "Yes, I'm powered by AI logic built into this site! Ask me about Harsh Kumar and his work.";
-        } else {
-            return "I'm Harsh Kumar's AI assistant 🤖. You can ask me about skills, projects, or how to contact him!";
-        }
-    }
-
-    aiSend.addEventListener('click', sendMessage);
-    aiInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
-    }
-      
